@@ -6,8 +6,7 @@ from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
 
 from Boss import Boss
-from Constants import background_img, life_bar_img, overheat_frame_texture, overheat_bar_texture, \
-    d_pad_frame_texture, d_pad_texture
+from Constants import background_img, life_bar_img, overheat_frame_texture, overheat_bar_texture
 from Player import Player
 from Rock import Rock
 
@@ -37,12 +36,6 @@ class GamePlay(FloatLayout):
         # Boss creating
         self.boss_appearing = False
         self.boss_appearing_time = 0.0
-
-        # D pad
-        self.touching = False
-        self.touch_pos = 0.0, 0.0
-        d_pad_frame_texture.render(self, 0.24, 0.35, 0.2, 0.3)
-        d_pad_texture.render(self, 0.193, 0.275, 0.1, 0.15)
 
     def _keyboard_closed(self):
         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
@@ -79,23 +72,6 @@ class GamePlay(FloatLayout):
         if keycode[1] == 'spacebar':
             self.player.is_shooting = False
         return True
-
-    def on_touch_move(self, touch):
-        if 0.04 <= touch.spos[0] <= 0.24 and 0.05 <= touch.spos[1] <= 0.35:
-            d_pad_texture.set_pos(touch.spos[0] + 0.05, touch.spos[1] + 0.075)
-            if 0.04 <= touch.spos[0] <= 0.04 + 0.2 / 3:
-                self.player.dx = -0.005
-            if 0.04 + 0.4 / 3 <= touch.spos[0] <= 0.24:
-                self.player.dx = 0.005
-            if 0.05 <= touch.spos[1] <= 0.05 + 0.1:
-                self.player.dy = -0.005
-            if 0.05 + 0.2 <= touch.spos[1] <= 0.35:
-                self.player.dy = 0.005
-
-    def on_touch_up(self, touch):
-        d_pad_texture.set_pos(0.193, 0.275)
-        self.player.dx = 0
-        self.player.dy = 0
 
     def update(self, dt):
         for e in self.entities:

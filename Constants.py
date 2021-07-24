@@ -18,8 +18,6 @@ overheat_bar_texture = Texture('images/Overheat_bar.png', -1, 0, 0, 0)
 boss_texture = Texture('images/Boss.png', -1, 0, 0, 0)
 health_frame_texture = Texture('images/Boss_health_frame.png', -1, 0, 0, 0)
 health_bar_texture = Texture('images/Boss_health_bar.png', -1, 0, 0, 0)
-d_pad_frame_texture = Texture('images/d_pad_frame.png', -1, 0, 0, 0)
-d_pad_texture = Texture('images/d_pad.png', -1, 0, 0, 0)
 
 # Animation
 space_ship_alive_anim = Animation(space_ship_alive, 39, 0, 39, 39, 1, 1, 0)
